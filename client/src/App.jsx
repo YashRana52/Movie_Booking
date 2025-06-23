@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -36,23 +36,25 @@ function App() {
             <Route path="/my-bookings" element={<MyBookings />} />
             <Route path="/loading/:nextUrl" element={<Loading />} />
             <Route path="/favorite" element={<Favorite />} />
-            <Route
-              path="/admin/*"
-              element={
-                user ? (
-                  <Layout />
-                ) : (
+
+            {/* Admin Protected Routes */}
+            {user ? (
+              <Route path="/admin/*" element={<Layout />}>
+                <Route index element={<DashBoard />} />
+                <Route path="add-shows" element={<AddShows />} />
+                <Route path="list-shows" element={<ListShows />} />
+                <Route path="list-bookings" element={<ListBookings />} />
+              </Route>
+            ) : (
+              <Route
+                path="/admin/*"
+                element={
                   <div className="min-h-screen flex justify-center items-center">
                     <SignIn fallbackRedirectUrl="/admin" />
                   </div>
-                )
-              }
-            >
-              <Route index element={<DashBoard />} />
-              <Route path="add-shows" element={<AddShows />} />
-              <Route path="list-shows" element={<ListShows />} />
-              <Route path="list-bookings" element={<ListBookings />} />
-            </Route>
+                }
+              />
+            )}
           </Routes>
         </div>
         {!isAdminRoute && <Footer />}
