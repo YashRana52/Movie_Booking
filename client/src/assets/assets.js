@@ -1,13 +1,21 @@
 import logo from './logo.svg'
+import logo3 from './logo3.png'
+import logo2 from './logo2.webp'
 import marvelLogo from './marvelLogo.svg'
 import googlePlay from './googlePlay.svg'
 import appStore from './appStore.svg'
 import screenImage from './screenImage.svg'
+import squid from './squid.jpg'
+import squid1 from './squid.jpg'
 import profile from './profile.png'
 
 export const assets = {
     logo,
+    logo2,
+    logo3,
     marvelLogo,
+    squid,
+    squid1,
     googlePlay,
     appStore,
     screenImage,
@@ -15,6 +23,31 @@ export const assets = {
 }
 
 export const dummyTrailers = [
+    
+
+{
+    image: "https://img.youtube.com/vi/uoBN8Ba4bhg/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=uoBN8Ba4bhg"
+},
+{
+    image: "https://img.youtube.com/vi/3x77q40hATw/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=3x77q40hATw"
+},
+
+
+
+
+    {
+    image: "https://img.youtube.com/vi/9AWsHxSfU_Y/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=9AWsHxSfU_Y"
+},
+
+{
+    image: "https://img.youtube.com/vi/dK1W-AViQ-M/maxresdefault.jpg",
+    videoUrl: "https://www.youtube.com/watch?v=dK1W-AViQ-M"
+},
+
+
     {
         image: "https://img.youtube.com/vi/WpW36ldAqnM/maxresdefault.jpg",
         videoUrl: 'https://www.youtube.com/watch?v=WpW36ldAqnM'

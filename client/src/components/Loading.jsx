@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Loading() {
+  const { nextUrl } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (nextUrl) {
+      const timer = setTimeout(() => {
+        navigate('/' + nextUrl);
+      }, 8000);
+
+      return () => clearTimeout(timer); 
+    } else {
+      console.warn('nextUrl is undefined'); 
+    }
+  }, [nextUrl, navigate]); 
+
   return (
     <div className="flex items-center justify-center h-[80vh] bg-transparent">
       <div className="relative flex items-center justify-center">
@@ -11,7 +27,7 @@ function Loading() {
         <div className="h-14 w-14 border-4 border-t-primary border-b-primary border-l-transparent border-r-transparent rounded-full animate-spin"></div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Loading
+export default Loading;

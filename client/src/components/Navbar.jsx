@@ -4,12 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MenuIcon, SearchIcon, TicketPlus, XIcon } from 'lucide-react';
 import { assets } from '../assets/assets';
 import { useClerk, UserButton, useUser } from '@clerk/clerk-react';
+import { useAppContext } from '../context/AppContext';
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const { user } = useUser();
     const { openSignIn } = useClerk();
     const navigate = useNavigate();
+   const { favoriteMovies } = useAppContext();
 
     return (
         <div className='fixed top-0 left-0 z-50 w-full bg-black flex items-center justify-between px-6 md:px-16 lg:px-36 py-5'>
@@ -27,7 +29,11 @@ function Navbar() {
                 <Link to='/movies' className='text-white'>Movies</Link>
                 <Link to='/' className='text-white'>Theaters</Link>
                 <Link to='/' className='text-white'>Releases</Link>
-                <Link to='/favorite' className='text-white'>Favorites</Link>
+                {
+                     favoriteMovies.length>0 &&  <Link to='/favorite' className='text-white'>Favorites</Link>
+                }
+                
+              
                 
             </div>
             
@@ -74,7 +80,11 @@ function Navbar() {
                     <Link to='/movies' className='text-white text-xl' onClick={() => { scrollTo(0, 0); setMenuOpen(false) }}>Movies</Link>
                     <Link to='/' className='text-white text-xl' onClick={() => { scrollTo(0, 0); setMenuOpen(false) }}>Theaters</Link>
                     <Link to='/' className='text-white text-xl' onClick={() => { scrollTo(0, 0); setMenuOpen(false) }}>Releases</Link>
-                    <Link to='/favorite' className='text-white text-xl' onClick={() => { scrollTo(0, 0); setMenuOpen(false) }}>Favorites</Link>
+                    {
+                        favoriteMovies.length>0 &&
+                          <Link to='/favorite' className='text-white text-xl' onClick={() => { scrollTo(0, 0); setMenuOpen(false) }}>Favorites</Link>
+                    }
+                  
                     {
                         !user ? (
                             <button
