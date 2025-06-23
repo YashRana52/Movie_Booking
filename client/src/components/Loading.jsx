@@ -9,7 +9,7 @@ function Loading() {
     if (nextUrl) {
       const timer = setTimeout(() => {
         navigate('/' + nextUrl);
-      }, 8000);
+      }, 5000);
 
       return () => clearTimeout(timer); 
     } else {

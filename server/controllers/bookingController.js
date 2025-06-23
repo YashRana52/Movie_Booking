@@ -1,3 +1,4 @@
+import { inngest } from '../inngest/index.js';
 import Booking from '../models/Booking.js';
 import Show from '../models/Show.js';
 import Stripe from 'stripe'
@@ -79,6 +80,15 @@ expires_at: Math.floor(Date.now() / 1000) + 30 * 60,
 })
 booking.paymentLink = session.url
 await booking.save()
+
+// run ingest Sheduler fun to check payment status after 10 minutes
+
+await inngest.send({
+  name:"app/checkPayment",
+  data:{
+    bookingId:booking._id.toString()
+  }
+})
 
 
 
