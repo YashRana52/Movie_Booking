@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Movie from '../models/Movie.js';
 import Show from '../models/Show.js';
+import { inngest } from '../inngest/index.js';
 
 // Get Now Playing Movies
 export const getNowPlayingMovies = async (req, res) => {
@@ -73,6 +74,14 @@ export const addShow = async (req, res) => {
 
     if (showsToCreate.length > 0) {
       await Show.insertMany(showsToCreate);
+      //trigger ingest event
+
+      await inngest.send({
+        name:"app/show.added",
+        data:{movieTitle:movie.title}
+      })
+
+
       return res.json({ success: true, message: 'Show added successfully!' });
     } else {
       return res.json({ success: false, message: 'No shows to add.' });
