@@ -37,7 +37,7 @@ function App() {
             <Route path="/loading/:nextUrl" element={<Loading />} />
             <Route path="/favorite" element={<Favorite />} />
 
-            {/* Admin Protected Routes */}
+            {/* Admin Routes */}
             {user ? (
               <Route path="/admin/*" element={<Layout />}>
                 <Route index element={<DashBoard />} />
