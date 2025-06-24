@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import Loading from '../components/Loading';
 import { ArrowRight, ClockIcon } from 'lucide-react';
-import isoTimeFormat from '../lib/isoTimeFormate';
 import BlurCircle from '../components/BlurCircle';
 import toast from 'react-hot-toast';
 import { useAppContext } from '../context/AppContext';
+import { useClerk } from '@clerk/clerk-react'; // ✅ Same as Navbar
 
 function SeatLayout() {
   const groupRows = [["A", "B"], ["C", "D"], ["E", "F"], ["G", "H"], ["I", "J"]];
@@ -16,8 +16,8 @@ function SeatLayout() {
   const [show, setShow] = useState(null);
   const [occupiedSeats, setOccupiedSeats] = useState([]);
 
-  const navigate = useNavigate();
   const { axios, getToken, user } = useAppContext();
+  const { openSignIn } = useClerk(); // ✅ Correct, as per your Navbar logic
 
   const formatDate = (dateStr) => {
     const parts = dateStr.split('-');
@@ -30,7 +30,6 @@ function SeatLayout() {
     try {
       const { data } = await axios.get(`/api/show/${id}`);
       if (data.success) {
-        console.log("Show Data from Backend:", data);
         setShow(data);
       }
     } catch (error) {
@@ -91,7 +90,11 @@ function SeatLayout() {
 
   const bookTicket = async () => {
     try {
-      if (!user) return toast.error('Please login to proceed');
+      if (!user) {
+        toast.error('Please login to proceed');
+        return openSignIn(); // ✅ Same login logic as Navbar
+      }
+
       if (!selectedTime || !selectedSeats.length)
         return toast.error('Please select a time and seats');
 
@@ -103,13 +106,23 @@ function SeatLayout() {
       });
 
       if (data.success) {
-       window.location.href= data.url;
+        window.location.href = data.url;
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       toast.error(error.message);
     }
+  };
+
+  const formatTo12Hour = (timeStr) => {
+    if (!timeStr) return "";
+    const [hourStr, minuteStr] = timeStr.split(':');
+    let hour = parseInt(hourStr, 10);
+    const minute = minuteStr.padStart(2, '0');
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12 || 12;
+    return `${hour}:${minute} ${ampm}`;
   };
 
   useEffect(() => {
@@ -138,7 +151,7 @@ function SeatLayout() {
                 }`}
               >
                 <ClockIcon className='w-4 h-4' />
-                <p className='text-sm'>{item.time}</p>
+                <p className='text-sm'>{formatTo12Hour(item.time)}</p>
               </div>
             ))
           ) : (

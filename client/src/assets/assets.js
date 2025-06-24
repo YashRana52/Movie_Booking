@@ -1,5 +1,8 @@
 import logo from './logo.svg'
 import logo3 from './logo3.png'
+import logo4 from './logo4.png'
+import logo5 from './logo5.png'
+import logo6 from './logo6.png'
 import logo2 from './logo2.webp'
 import marvelLogo from './marvelLogo.svg'
 import googlePlay from './googlePlay.svg'
@@ -13,6 +16,9 @@ export const assets = {
     logo,
     logo2,
     logo3,
+    logo4,
+    logo5,
+    logo6,
     marvelLogo,
     squid,
     squid1,

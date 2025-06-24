@@ -1,13 +1,14 @@
 import { LayoutDashboardIcon, ListCollapseIcon, ListIcon, PlusSquareIcon } from 'lucide-react'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { assets } from '../../assets/assets'
+
 
 function AdminSidebar() {
     const user = {
         firstName: 'Admin',
         lastName:'User',
-        imageUrl:assets.profile,
+        imageUrl: "https://avatars.githubusercontent.com/u/176314557?v=4"
+
     }
 
    const adminNavlinks = [

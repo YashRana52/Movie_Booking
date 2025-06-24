@@ -14,11 +14,14 @@ function Navbar() {
    const { favoriteMovies } = useAppContext();
 
     return (
-        <div className='fixed top-0 left-0 z-50 w-full bg-black flex items-center justify-between px-6 md:px-16 lg:px-36 py-5'>
+     <div className='fixed top-0 left-0 z-50 w-full bg-gray-900 flex items-center justify-between px-4 md:px-12 lg:px-24 py-3'>
 
-            <Link to='/' className='flex items-center'>
-                <img src={assets.logo} alt="Logo" className='w-36 h-auto' />
-            </Link>
+
+    <Link to='/' className='flex items-center'>
+        <img src={assets.logo6} alt="Logo" className='w-40 h-20 object-contain' />
+    </Link>
+
+
             
             
             

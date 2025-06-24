@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { assets } from '../assets/assets'
+
 import { CalendarIcon, ClockIcon, ArrowRight } from 'lucide-react'
 
 
@@ -14,7 +14,7 @@ function HeroSection() {
   return (
     <div className='flex flex-col items-start justify-center gap-4 px-6 md:px-16 lg:px-36 bg-[url("/thumb-1920-674685.jpg")] bg-cover bg-center h-screen'>
 
-      <img src={assets.logo3} alt="" className='max-h-11 lg:h-11 mt-20' />
+    
 <h1 className='text-5xl md:text-[70px] font-bold drop-shadow-xl animate-pulse'>
   <span className='text-orange-500'>Game </span>
   <br />
