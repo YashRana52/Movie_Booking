@@ -14,7 +14,7 @@ A full-stack Movie Booking Application where users can explore movies, check sho
 
 | Home Page                         | Movie Details Page                | Booking Page                      |
 |----------------------------------|----------------------------------|-----------------------------------|
-| ![Home](./screenshots/home.png) | ![Details](./screenshots/details.png) | ![Booking](./screenshots/booking.png) |
+| ![Home](./screenshots/home.png) | ![Details](./screenshots/details.png) | ![Booking](./screenshots/booking.png) | ![Movie](./screenshots/Movie.png) |
 
 
 
